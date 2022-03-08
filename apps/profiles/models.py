@@ -59,7 +59,7 @@ class Profile(TimeStampedUUIDModel):
     is_agent = models.BooleanField(
         default=False, verbose_name=_("Agent"), help_text=_("Are you an agent?")
     )
-    to_agent = models.BooleanField(default=False, verbose_name=_("Top Agent"))
+    top_agent = models.BooleanField(default=False, verbose_name=_("Top Agent"))
     rating = models.DecimalField(max_digits=4, decimal_places=2, null=True, blank=True)
     num_reviews = models.IntegerField(
         verbose_name=_("Number of Reviews"), default=0, null=True, blank=True
