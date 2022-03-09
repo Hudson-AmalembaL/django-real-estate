@@ -26,6 +26,9 @@ makemigrations:
 superuser:
 	docker-compose exec api python3 manage.py createsuperuser
 
+check-status:
+	docker-compose exec api python3 manage.py check
+
 collectstatic:
 	docker-compose exec api python3 manage.py collectstatic --no-input --clear
 
