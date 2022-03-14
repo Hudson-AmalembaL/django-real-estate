@@ -1,5 +1,6 @@
 import factory
 from apps.profiles.models import Profile
+from apps.enquiries.models import Enquiry
 from django.db.models.signals import post_save
 from faker import Factory as FakerFactory
 from real_estate.settings.base import AUTH_USER_MODEL
@@ -50,3 +51,15 @@ class ProfileFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = Profile
+
+
+@factory.django.mute_signals(post_save)
+class EnquiryFactory(factory.django.DjangoModelFactory):
+    name = factory.LazyAttribute(lambda x: faker.name())
+    phone_number = factory.LazyAttribute(lambda x: faker.phone_number())
+    email = factory.LazyAttribute(lambda x: faker.email())
+    subject = factory.LazyAttribute(lambda x: faker.sentence(nb_words=5))
+    message = factory.LazyAttribute(lambda x: faker.sentence(nb_words=15))
+
+    class Meta:
+        model = Enquiry
